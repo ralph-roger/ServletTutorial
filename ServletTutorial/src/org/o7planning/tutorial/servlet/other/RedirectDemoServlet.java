@@ -14,7 +14,7 @@ public class RedirectDemoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
  
     // Request:
-    // http://localhost:8080/ServletTutorial/other/forwardDemo?forward=true
+    // http://localhost:8080/ServletTutorial/other/forwardDemo?redirect=true
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

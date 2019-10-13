@@ -24,7 +24,7 @@ public class MyDefaultServlet extends HttpServlet {
        ServletOutputStream out = response.getOutputStream();
  
        out.println("<html>");
-       out.println("<head><title>Page not found</title></head>");
+       out.println("<head><title>Page not found Alter</title></head>");
  
        out.println("<body>");
        out.println("<h3>Sorry! Page not found MyDefaultServlet used</h3>");
