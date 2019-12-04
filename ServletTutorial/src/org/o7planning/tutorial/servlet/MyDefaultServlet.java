@@ -27,9 +27,9 @@ public class MyDefaultServlet extends HttpServlet {
        out.println("<head><title>Page not found Alter</title></head>");
  
        out.println("<body>");
-       out.println("<h3>Sorry! Page not found MyDefaultServlet used</h3>");
+       out.println("<h3>Sorry! Page not found! Habe \"MyDefaultServlet\" genutzt</h3>");
        out.println("<h1>404</h1>");
-       out.println("Message from servlet: " + this.getClass().getName());
+       out.println("Servlet sagt: " + this.getClass().getName());
        out.println("</body>");
        out.println("<html>");
    }

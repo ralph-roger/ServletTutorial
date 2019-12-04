@@ -22,6 +22,68 @@ public class DatabaseSetup extends HttpServlet {
 	Server server;
 
 	public void init() throws ServletException {
+		System.out.println(" **************** IN INIT ***************");
+		startServer();
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html");
+		PrintWriter out = resp.getWriter();
+		String reqCommand = req.getParameter("command");
+		ServletContext context = getServletContext();
+
+		if (reqCommand.equalsIgnoreCase("info")) {
+			if (this.server != null) {
+				out.write("<br/>Address : " + server.getAddress());
+				out.write("<br/>Database Name : " + server.getDatabaseName(0, true));
+				out.write("<br/>DatabasePath : " + server.getDatabasePath(0, true));
+				out.write("<br/>Port : " + server.getPort());
+				out.write("<br/>DefaultWebPage : " + server.getDefaultWebPage());
+				out.write("<br/>ProductName : " + server.getProductName());
+				out.write("<br/>ProductVersion : " + server.getProductVersion());
+				out.write("<br/>Protocol : " + server.getProtocol());
+				out.write("<br/>ServerId : " + server.getServerId());
+				out.write("<br/>State : " + server.getState());
+				out.write("<br/>StateDescriptor : " + server.getStateDescriptor());
+				out.write("<br/>WebRoot : " + server.getWebRoot());
+			} else {
+				out.write("<br/>Server Addresse : null");
+			}
+		} else {
+
+			if (reqCommand.equalsIgnoreCase("stop")) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				server.setLogWriter(out);
+				server.shutdown();
+				out.write("Database has been stopped.");
+				context.setAttribute("server", "Database has been stopped.");
+			} else {
+				if (reqCommand.equalsIgnoreCase("start")) {
+					if (server == null || server.getState() > 1) {
+						startServer();
+						out.write("Database has been started.");
+						context.setAttribute("server", "Database has been started.");
+					} else {
+						out.write("Database already started.");
+						context.setAttribute("server", "Database has been started.");
+					}
+				} else {
+					out.write("No command matched");
+				}
+			}
+		}
+		out.write("<br/><a href='ViewRecords'>View Records</a>");
+		out.write("<br/><a href='index.html'>Home</a> ");
+	}
+
+	private void startServer() {
+		// TODO Auto-generated method stub
 		server = new Server();
 		server.setAddress("localhost");
 		server.setDatabaseName(0, "mydb1");
@@ -50,44 +112,4 @@ public class DatabaseSetup extends HttpServlet {
 		context.setAttribute("con", con);
 	}
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		String reqCommand = req.getParameter("command");
-		if (reqCommand.equalsIgnoreCase("info")) {
-			out.write("<br/>Address : " + server.getAddress());
-			out.write("<br/>Database Name : " + server.getDatabaseName(0, true));
-			out.write("<br/>DatabasePath : " + server.getDatabasePath(0, true));
-			out.write("<br/>Port : " + server.getPort());
-			out.write("<br/>DefaultWebPage : " + server.getDefaultWebPage());
-			out.write("<br/>ProductName : " + server.getProductName());
-			out.write("<br/>ProductVersion : " + server.getProductVersion());
-			out.write("<br/>Protocol : " + server.getProtocol());
-			out.write("<br/>ServerId : " + server.getServerId());
-			out.write("<br/>State : " + server.getState());
-			out.write("<br/>StateDescriptor : " + server.getStateDescriptor());
-			out.write("<br/>WebRoot : " + server.getWebRoot());
-		}
-		if (reqCommand.equalsIgnoreCase("stop")) {
-			server.setLogWriter(out);
-			server.shutdown();
-			out.write("Database has been stopped.");
-		}
-		if (reqCommand.equalsIgnoreCase("start")) {
-			server.setLogWriter(out);
-			server.start();
-			out.write("Database has been started.");
-		} else {
-			out.write("No command matched");
-		}
-		out.write("<br/><a href='ViewRecords'>View Records</a>");
-		out.write("<br/><a href='index.html'>Home</a> ");
-	}
-	public void shutDown() {
-		server.shutdown();
-		System.out.println("Database has been stopped.");
-
-		
-	}
 }
