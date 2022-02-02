@@ -28,7 +28,7 @@ public class RedirectDemoServlet extends HttpServlet {
  
             String contextPath = request.getContextPath();
             
-            response.sendRedirect(contextPath + "/showMe");
+            response.sendRedirect(contextPath + "/other/showMe");
  
             return;
         }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  
 import org.o7planning.tutorial.beans.Constants;
  
-@WebServlet("/showMe")
+@WebServlet("/other/showMe")
 public class ShowMeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
  
