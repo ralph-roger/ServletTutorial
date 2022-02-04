@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
-@WebServlet(urlPatterns = { "/any/*" })
+// any/*  bewirkt das egal was ich eingebe dieses Servlet gerufen wird. Auch asterisk funktioniert, 
+// aber wegen /any/asterisk. In diesem Fall ist pathInfo null.
+@WebServlet(urlPatterns = { "/any/*", "/any/asterisk"})
+
 public class AsteriskServlet extends HttpServlet {
  
     private static final long serialVersionUID = 1L;
@@ -21,7 +24,8 @@ public class AsteriskServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+    	System.out.println();
+    	
         ServletOutputStream out = response.getOutputStream();
  
         out.println("<html>");
@@ -29,8 +33,10 @@ public class AsteriskServlet extends HttpServlet {
  
         out.println("<body>");
  
-        out.println("<h3>Hi, your URL match /any/*</h3>");
- 
+        out.println("<h3>Hi, your URL match /any/* oder /any/asterisk </h3>");
+        out.println("<p> </p>");
+        out.println("<p> Hier die Pathinfo: " + request.getPathInfo() + "</p>");
+        out.println("<p> Hier die PathinfoTranslated: " + request.getPathTranslated() + "</p>");
         out.println("</body>");
         out.println("<html>");
     }

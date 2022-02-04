@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
-@WebServlet(urlPatterns = { "/" })
+@WebServlet(urlPatterns = { "/mydefault" })
 public class MyDefaultServlet extends HttpServlet {
  
    private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class MyDefaultServlet extends HttpServlet {
        out.println("<head><title>Page not found Alter</title></head>");
  
        out.println("<body>");
-       out.println("<h3>Sorry! Page not found! Habe \"MyDefaultServlet\" genutzt</h3>");
+       out.println("<h3>Sorry! Page not found! \"MyDefaultServlet\" used</h3>");
        out.println("<h1>404</h1>");
        out.println("Servlet sagt: " + this.getClass().getName());
        out.println("</body>");
