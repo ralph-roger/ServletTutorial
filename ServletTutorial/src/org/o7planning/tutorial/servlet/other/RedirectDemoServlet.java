@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.o7planning.tutorial.beans.Constants;
  
 @WebServlet("/other/redirectDemo")
 public class RedirectDemoServlet extends HttpServlet {
@@ -25,7 +27,9 @@ public class RedirectDemoServlet extends HttpServlet {
         if ("true".equals(redirect)) {
             System.out.println("Redirect to ShowMeServlet");
  
- 
+            request.setAttribute(Constants.ATTRIBUTE_USER_NAME_KEY, 
+                    "Hi, I'm Ralph looking at you. Here from Redirect!");
+
             String contextPath = request.getContextPath();
             
             response.sendRedirect(contextPath + "/other/showMe");
@@ -34,7 +38,7 @@ public class RedirectDemoServlet extends HttpServlet {
         }
         ServletOutputStream out = response.getOutputStream();
         out.println("<h1>Text of RedirectDemoServlet</h1>");
-        out.println("- servletPath=" + request.getServletPath());
+        out.println("- servletPath= " + request.getServletPath());
     }
  
     @Override

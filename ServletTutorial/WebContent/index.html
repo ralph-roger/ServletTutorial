@@ -6,11 +6,41 @@
 </head>
 <body>
 
- <h1> Hello World im index.html</h1>
+<h1> Alle Aufrufe in diesem Projekt</h1>
  
-<p> <a href="/MeineWebAppRoot/HelloServlet">/MeineWebAppRoot/HelloServlet</a> </p> 
- 
-<p> <a href="https://o7planning.org/en/10169/java-servlet-tutorial">"Use the Tutorial"</a> -->
+<p> <a href="/ServletTutorial/hello">/ServletTutorial/hello</a> </p> 
+<p> <a href="/ServletTutorial/annExample">/ServletTutorial/annExample</a> </p> 
+<p> <a href="/ServletTutorial/any/xyz">/ServletTutorial/any/xyz für AsterixServlet </a> </p>
+<p> <a href="/ServletTutorial/initParam">/ServletTutorial/initParam aus web.xml</a> </p>
+
+<h2>Other</h2>
+<p> <a href="/ServletTutorial/other/exampleInfo?xxx=test&text1=Hier ist text1&text2=Und hier text2">/ServletTutorial/other/exampleInfo -- mit Parametern</a> </p>
+<p> <a href="/ServletTutorial/other/forwardDemo">/ServletTutorial/other/forwardDemo -- ohne Parameter</a> </p>
+<p> <a href="/ServletTutorial/other/forwardDemo?forward=true">/ServletTutorial/other/forwardDemo?forward=true -- mit Parameter</a> </p>
+<p> <a href="/ServletTutorial/other/redirectDemo">/ServletTutorial/other/redirectDemo -- ohne Parameter </a> </p>
+<p> <a href="/ServletTutorial/other/redirectDemo?redirect=true">/ServletTutorial/other/redirectDemo?redirect=true -- mit Parameter </a> </p>
+
+<h2>Session</h2>
+<p> <a href="/ServletTutorial/login">/ServletTutorial/login</a> </p> 
+
+<h2> Default Errorpage </h2>
+
+<p> <a href="/ServletTutorial/mydefault">/ServletTutorial/mydefault Sollte eigentlich StandardErrorPage sein</a> </p>
+
+<h3>Das funktioniert leider noch nicht.</h3>
+<pre>
+&lt;error-page&gt; 
+&lt;!-- Errorcode abfragen wenn konkret ben&ouml;tigt --&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt; 
+    &lt;location&gt;/jsp/error.jsp&lt;/location&gt;
+&lt;/error-page&gt;
+</pre> 
+
+
+
+
+
+<p> <a href="https://o7planning.org/en/10169/java-servlet-tutorial">"Use the Tutorial of o7planning.org"</a> -->
  
 </body>
 </html>

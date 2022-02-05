@@ -12,6 +12,15 @@ import javax.servlet.http.HttpServletResponse;
  
 import org.o7planning.tutorial.beans.Constants;
  
+
+/**
+ * 
+ * @author ralph
+ * Parameter ggf. forward=true
+ * Wenn forward=true gesetzt, dann wird der Wert der Constante ATTRIBUTE_USER_NAME_KEY
+ * auf "Hi, I'm Ralph looking at you" gesetzt und auf das Servlet ShowMeServlet weitergeleitet
+ * 
+ */
 @WebServlet("/other/forwardDemo")
 public class ForwardDemoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -25,15 +34,16 @@ public class ForwardDemoServlet extends HttpServlet {
         // Get value of parameter on URL.
         String forward = request.getParameter("forward");
  
+        // Umleiten auf ShowMeServlet
         if ("true".equals(forward)) {
             System.out.println("Forward to ShowMeServlet");
  
             // Set data to attribute of the request.
-            request.setAttribute(Constants.ATTRIBUTE_USER_NAME_KEY, //
-                    "Hi, I'm Tom come from Walt Disney !");
+            request.setAttribute(Constants.ATTRIBUTE_USER_NAME_KEY, 
+                    "Hi, I'm Ralph looking at you. Here from ForwardDemo!");
  
-            RequestDispatcher dispatcher //
-                    = request.getServletContext().getRequestDispatcher("/showMe");
+            RequestDispatcher dispatcher 
+                    = request.getServletContext().getRequestDispatcher("/other/showMe");
             dispatcher.forward(request, response);
  
             return;

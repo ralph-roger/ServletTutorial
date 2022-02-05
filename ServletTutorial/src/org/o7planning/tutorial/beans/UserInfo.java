@@ -11,6 +11,9 @@ public class UserInfo {
        this.country= country;
        this.post= post;
    }
+   public UserInfo(String userName) {
+       this.userName = userName;
+   }
  
    public int getPost() {
        return post;
@@ -31,10 +34,7 @@ public class UserInfo {
    public void setUserName(String userName) {
        this.userName = userName;
    }
- 
-   public UserInfo(String userName) {
-       this.userName = userName;
-   }
+
  
    public String getUserName() {
        return this.userName;
